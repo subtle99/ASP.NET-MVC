@@ -1,0 +1,29 @@
+﻿@model List<MyDiary.Models.Diary>
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table table-bordered table-condensed table-hover table-striped">
+    <tr>
+        <td colspan="5">
+            <a href="@Url.Content("~/Home/Create")">创建日记</a>
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(m=>m[0].Id)</td>
+        <td>Title</td>
+        <td>User</td>
+        <td>PubDate</td>
+        <td></td>
+    </tr>
+    @foreach (var diary in Model)
+    {
+    <tr>
+        <td>@Html.DisplayFor(m=>diary.Id)</td>
+        <td>@diary.Title</td>
+        <td>@diary.User.UserName</td>
+        <td>@diary.PubDate</td>
+        <td><a href="@Url.Content("~/Home/Remove/"+@diary.Id)">删除</a></td>
+    </tr>
+    }
+</table>
